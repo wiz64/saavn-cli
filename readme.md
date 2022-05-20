@@ -3,6 +3,8 @@
 Search, Download and Play your favorite songs right away from the command-line. High-Quality MP3 Files upto 320kbps bitrate with Metadata.
 
 # Details
+
+[Download Here](https://github.com/wiz64/saavn-cli/releases)
 > Developer : [@wiz64](https://github.com/wiz64) <br>
 > Status : `In Development`<br>
 > Version : `v 0.0.1`<br>
