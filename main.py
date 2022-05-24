@@ -224,7 +224,7 @@ if (len(sys.argv) >= 3):
   terms = sys.argv[2:]
   if(action=="search"):
     searchTerm = " ".join(terms)
-    print("Seach Terms : "+ searchTerm)
+    print("Search Terms : "+ searchTerm)
   if(action=="download"):
     terms = sys.argv[2:]
     DownloadItems = " ".join(terms).split(" ")
