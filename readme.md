@@ -117,7 +117,7 @@ saavn-cli search:96 Magneta Riddim
 I dedicate this project to a special one. Any guess who are they ?
 
 Anyone is free to contribute to this project, fixing bugs, optimising code, improving documentation, testing, feedback, etc.
-PLEASE NOTE - `saavn-cli` file is just a duplitcate of `main.py`. Please change code of `main.py` file instead.
+PLEASE NOTE - `saavn-cli` file is just a duplicate of `main.py`. Please change code of `main.py` file instead.
 # License
 Copyright &copy; 2022 wiz64
 
