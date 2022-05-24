@@ -36,7 +36,7 @@ Windows users run `python saavn-cli`. Due to a VSCode bug, you may need to add `
 ### Requirements
 
 - ffmpeg
-- Python
+- Python (v3)
   #### Py Modules
   `requests`
   
