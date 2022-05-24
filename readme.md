@@ -73,7 +73,7 @@ saavn-cli search:160 Imagine Dragons
 - `Imagine Dragons` - Rest Arguments are "terms" used to query the API in search action or Links/IDs seperated by spacing in download mode
 # Actions
 ## Search
-To search songs avialable on Saavn and download MP3 to current directory.<br>
+To search for songs available on Saavn and download MP3 to current directory.<br>
 Syntax : `saavn-cli <s/search> <query>`<br>
 Argument : `s or search`<br>
 Bitrate can be added optionally.
