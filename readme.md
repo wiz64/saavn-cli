@@ -22,7 +22,7 @@ Compatible with Linux, Windows & MacOS
 # Usage
 Quickstart
 ```
-saavn-cli search Arijit Singh
+./saavn-cli search Arijit Singh
 ```
 This will query the API for "Arijit Singh" and then display the results as a list. You can select from the list for the song to download.
 
