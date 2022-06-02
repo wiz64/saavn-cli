@@ -28,7 +28,7 @@ This will query the API for "Arijit Singh" and then display the results as a lis
 
 Windows users run `python saavn-cli`. Due to a VSCode bug, you may need to add `python ` prefix before commands.
 
-Linux users run `python3 saavn-cli`. If default python command is python2.
+Linux users run `python3 saavn-cli`. If default python command uses python2.(in most cases)
 
 # How it works ?
 
