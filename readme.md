@@ -26,7 +26,9 @@ Quickstart
 ```
 This will query the API for "Arijit Singh" and then display the results as a list. You can select from the list for the song to download.
 
-Windows users run `python saavn-cli`. Due to a VSCode bug, you may need to add `python ` prefix before commands, if VSCode is installed.
+Windows users run `python saavn-cli`. Due to a VSCode bug, you may need to add `python ` prefix before commands.
+
+Linux users run `python3 saavn-cli`. If default python command is python2.
 
 # How it works ?
 
