@@ -1,34 +1,44 @@
-## Saavn-cli - Command-Line Music Downloader
+## saavn-cli - Command-Line Music Downloader
 
 Search, Download and Play your favorite songs right away from the command-line. High-Quality MP3 Files upto 320kbps bitrate with Metadata.
-> Note: Have planned some major code changes and optimisation. Will release on next Update, will include compiled binaries for different platforms.
 # Details
 
-[Download Here](https://github.com/wiz64/saavn-cli/releases)
+## [Download](https://github.com/wiz64/saavn-cli/releases)
+<br>
+
 > Developer : [@wiz64](https://github.com/wiz64) <br>
 > Status : `In Development`<br>
-> Version : `v 0.0.1`<br>
-> Last Updated : `May 2022`<br>
+> Version : `v 1.0.0`<br>
+> Last Updated : `June 2022`<br>
 > Based on : [Saavn Unofficial API](https://github.com/sumitkolhe/jiosaavn-api) By [@sumitkolhe](https://github.com/sumitkolhe)
 ---
 Written in - Python <br>
-Compatible with Linux, Windows & MacOS
+Compatible with Linux, Windows, Android(Termux) & MacOS
 
 # Features -
-- A large library of songs
-- Search and Download songs directly from the command Line
-- Upto 320kbps MP3 files with Metadata
+- Free and Open Source
+- 📙 A large library of tracks
+- 🚀 Search and Download tracks directly from the command Line
+- 🎶 Upto 320kbps MP3 files with Metadata
+- 🎧 Download Multiple tracks at once
 
 # Usage
 Quickstart
-```
-./saavn-cli search Arijit Singh
-```
-This will query the API for "Arijit Singh" and then display the results as a list. You can select from the list for the song to download.
+- Compiled Executable
 
-Windows users run `python saavn-cli`. Due to a VSCode bug, you may need to add `python ` prefix before commands.
+Download the executable binary file, and run it directly or from the terminal 
 
-Linux users run `python3 saavn-cli`. If default python command uses python2.(in most cases)
+```
+./saavn-cli search english songs
+```
+This will query the API for "english songs" and then display the results as a list. Enter comma-seperated numbers of tracks to download (eg. 4,6,12,15)
+
+- Python Script (Lighter)
+
+Universal :
+```
+python saavn-cli.py search english songs
+```
 
 # How it works ?
 
@@ -39,40 +49,47 @@ Linux users run `python3 saavn-cli`. If default python command uses python2.(in 
 
 - ffmpeg
 - Python (v3)
-  #### Py Modules
-  `requests`
-  
 
-
-1) Install FFMPEG & Python
+1) Install FFMPEG
 <br>To check if ffmpeg is properly installed, run<br>
 `ffmpeg -version`<br>
+Termius/Linux : `sudo apt install ffmpeg`<br>
 [Download ffmpeg](https://ffmpeg.org/download.html)<br>
 Windows users can copy `ffmpeg.exe` to `C:\Windows\System32`
-2) Python<br>
-   Download from [Python.org](https://www.python.org/)<br>
-   run command<br>
-   (you can use cmd/git-bash on windows)<br>
-   `pip install requests`
 
-3) Download `saavn-cli` file<br>
-   `chmod +x saavn-cli` make it executable<br>
-   test by running `./saavn-cli`<br>
-   (optional) save to any $PATH directory for direct global access<br>
-LINUX : `/usr/bin/`<br>
-Windows : `C:\Windows\System32\`<br>
-Check [RELEASES](https://github.com/wiz64/saavn-cli/releases/) or clone this repository
+2) Download Executable from [RELEASES PAGE](https://github.com/wiz64/saavn-cli/releases/)
+Directly run commands relatively to the executables.
+
+RUNNING PYTHON SCRIPT:
+
+ Python<br>
+   Download and install Python v3+. Run
+
+   `pip install -r requirements.txt`
+
+execute script :
+
+`python saavn-cli.py search:160 english songs`
+
+### Compiling Binary :
+With `pyinstaller`
+
+`pip install -U pyinstaller`
+
+`pyinstaller --onefile saavn-cli.py`
+
+The Executable file will be saved to `dist` folder
 <hr>
 
 ## Argument Parsing
 Example Command :
 ```
-saavn-cli search:160 Imagine Dragons
+./saavn-cli search:160 English Songs
 ```
 - Here `saavn-cli` is argv[0], the script entry point
 - `search:160` is argv[1], action and bitrate option, seperated by `: colon` as `ACTION:BITRATE`.<br>
 - Action is Necessary but Bitrate is optional, 320 by default.
-- `Imagine Dragons` - Rest Arguments are "terms" used to query the API in search action or Links/IDs seperated by spacing in download mode
+- `English Songs` - Rest Arguments are "terms" used to query the API in search action or Links/IDs seperated by spacing in download mode
 # Actions
 ## Search
 To search for songs available on Saavn and download MP3 to current directory.<br>
@@ -81,7 +98,7 @@ Argument : `s or search`<br>
 Bitrate can be added optionally.
 Example:
 ```
-saavn-cli s:160 DJ Snake
+./saavn-cli s:160 DJ Snake
 ```
 ---
 
@@ -97,7 +114,7 @@ saavn-cli s:160 DJ Snake
   Example :
 
 ```
-saavn-cli download https://jiosaavn.com/song/LINK1 https://jiosaavn.com/song/LINK2 ID1 ID2
+saavn-cli download IEBQ7- DFEHNB- SJADKEi
 ```
 ---
 
@@ -112,18 +129,17 @@ saavn-cli search:96 Magneta Riddim
 <br>
 
 ### Todo -
- - fixing 'htmlspecialchars' bug
- - adding multi-download support
+ - adding link-download support
 
 # Footnotes 
 I dedicate this project to a special one. Any guess who are they ?
 
 Anyone is free to contribute to this project, fixing bugs, optimising code, improving documentation, testing, feedback, etc.
-PLEASE NOTE - `saavn-cli` file is just a duplicate of `main.py`. Please change code of `main.py` file instead.
+
 # License
 Copyright &copy; 2022 wiz64
 
 The source code of this tool has been licensed under `MIT License` Read the LICENSE File for more info.
 
 # Copyright Disclaimer
-I am not responsible for anything related to Third-Party copyright holders, This script comes with absolutely no warranties and works similar to `youtube-dl`. Kindly use at your own risk. <br>We do not host the Music files on our servers or accounts.
+I am not responsible for anything related to Third-Party copyright holders, This script comes with absolutely no warranties. Kindly use at your own risk. <br>We do not host or serve the Music files on our servers or accounts.<br> 
