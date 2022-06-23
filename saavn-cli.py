@@ -93,10 +93,10 @@ def DoUpdate(version):
       print(Fetched)
       ServerVersion = Fetched['version']
       ServerVersionCode = Fetched['versionCode']
-      if(ServerVersionCode>versionCode):
+      if ServerVersionCode>versionCode:
         print("\n\n [OK] An Update is available, Download Here : "+Fetched['download'])
         exit()
-      elif(ServerVersion<=versionCode):
+      elif ServerVersion<=versionCode:
         print("\n\n Tool is currently at latest version. check back later")
     else:
       print(r.status_code)
@@ -111,7 +111,6 @@ def FetchSearch(search_term):
     if(r.status_code == 200):
       print("OK 200")
       FetchedItems = r.json()
-      
       i=0 #number counter
       for item in FetchedItems["results"][:20]:
         i=i+1
