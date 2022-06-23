@@ -11,7 +11,7 @@ from time import sleep
 API_URL = "https://saavn.me"
 # Search_EP - Endpoint for searching the API
 Search_EP = "/search/songs?query="
-
+#
 Bitrate = 320 # Default Bitrate
 
 allowed_Bitrate = [12,48,96,160,320]
