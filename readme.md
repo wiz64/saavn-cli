@@ -126,11 +126,18 @@ Example:
 saavn-cli search:96 Magneta Riddim
 ```
 ---
-<br>
+## Check for Updates
+To check for updates, run command
+```
+saavn-cli update
+```
+
+---
+
 
 ### Todo -
  - adding link-download support
-
+ - fix some bugs
 # Footnotes 
 I dedicate this project to a special one. Any guess who are they ?
 

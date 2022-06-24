@@ -49,6 +49,7 @@ Supported Actions :
     `saavn-cli d IEBQ7- DFEHNB- SJADKEi`
 
 To force bitrate, specify it after action like <action:160>
+support values = 12,48,96,160,320
 `saavn-cli s:160 english songs`
 
 # h / help 
