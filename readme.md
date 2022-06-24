@@ -138,6 +138,8 @@ saavn-cli update
 ### Todo -
  - adding link-download support
  - fix some bugs
+ - album, artist search
+  
 # Footnotes 
 I dedicate this project to a special one. Any guess who are they ?
 
