@@ -79,8 +79,8 @@ try:
     subprocess.run(['ffmpeg','-version'],check = True,
     stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
 except:
-    print("\033[31;1;4m ERROR : ffmpeg command not found. Install ffmpeg..")
-    print("\033[1;32m "+FFMPEG_ERROR+" \033[0m")
+    print(" [X] ERROR : ffmpeg command not found. Install ffmpeg..")
+    print(" [0] "+FFMPEG_ERROR+" [0]")
 
 def DoUpdate(version):
     #URL of Update service
@@ -90,11 +90,11 @@ def DoUpdate(version):
     if r.status_code == 200:
       print("OK 200")
       Fetched = r.json()
-      print(Fetched)
+      #print(Fetched)
       ServerVersion = Fetched['version']
       ServerVersionCode = int(Fetched['versionCode'])
       if ServerVersionCode>versionCode:
-        print("\n\n [OK] An Update is available, Download Here : "+Fetched['download'])
+        print("\n --- [OK] An Update is available, Download Here : "+Fetched['download'])
         exit()
       elif ServerVersion<=versionCode:
         print("\n\n Tool is currently at latest version. check back later")
