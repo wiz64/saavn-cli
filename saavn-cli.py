@@ -92,7 +92,7 @@ def DoUpdate(version):
       Fetched = r.json()
       print(Fetched)
       ServerVersion = Fetched['version']
-      ServerVersionCode = Fetched['versionCode']
+      ServerVersionCode = int(Fetched['versionCode'])
       if ServerVersionCode>versionCode:
         print("\n\n [OK] An Update is available, Download Here : "+Fetched['download'])
         exit()
