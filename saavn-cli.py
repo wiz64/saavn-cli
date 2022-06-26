@@ -66,8 +66,11 @@ DownloadItems = []
 action = ""
 FetchedItems = []
 work_dir = "/tmp/saavn-cli/"
+# on windows work_dir will point to C:\tmp\saavn-cli
 
+#incase ffmpeg not found
 FFMPEG_ERROR = "use your package manager - eg- sudo apt install ffmpeg"
+
 print("System Platform : "+sys.platform)
 if sys.platform == "win32":
         Nullifier = " >nul 2>&1"
@@ -94,6 +97,7 @@ def DoUpdate(version):
       #print(Fetched)
       ServerVersion = Fetched['version']
       ServerVersionCode = int(Fetched['versionCode'])
+      # Compare ServerVersionCode with local versionCode
       if ServerVersionCode>versionCode:
         print("\n --- [OK] An Update is available, Download Here : "+Fetched['download'])
         exit()
@@ -107,6 +111,7 @@ def DoUpdate(version):
 ######## SEARCH FUNCTION
 def FetchSearch(search_term):
     URL = ( API_URL + Search_EP + str(search_term) + "&limit=60")
+    # CALL THE SAAVN UNOFFICIAL API
     print(" GET "+URL)
     r = requests.get(URL)
     if(r.status_code == 200):
@@ -133,6 +138,8 @@ def FetchSearch(search_term):
       # # ASK FOR USER INPUT
       #
       song_indexes = input("Track No.s - ")
+
+      #IF THERE ARE MORE THAN 20 RESULTS
       if (is_next_page==1 and str(song_indexes).lower() == 'n'):
             i=20 #number counter
             for item in FetchedItems["results"][20:]:
@@ -181,7 +188,7 @@ def FetchSearch(search_term):
         print(f"Downloading ({i}) {song_name[:36] } @ { song_album[:36]} by {song_artist[:36]} with song_id {song_id} at {Bitrate}kbps at {work_dir}")
         if not os.path.isdir(work_dir):
             os.makedirs(work_dir)
-
+        # Download Raw data to work_dir and compile later using ffmpeg
         song_data = requests.get(song_download_url)
         open(f'{work_dir}{song_id}_raw.mp3', 'wb').write(song_data.content)
         song_data = requests.get(song_img_url)
@@ -189,7 +196,7 @@ def FetchSearch(search_term):
         output = os.getcwd()+f"/{song_name}-{song_year}.mp3"
         print("Compiling Metadata")
         compile_command = f'cd "{work_dir}" && ls && ffmpeg -i "{song_id}_raw.mp3" -i "{song_id}_raw.jpg" -map 0:0 -map 1:0 -c copy -id3v2_version 3 -metadata title="{song_name}" -metadata album="{song_album}" -metadata artist="{song_artist[:72]}" -metadata date="{song_year}" -metadata album_artist="{song_artist[:72]}" -metadata copyright="{song_copyright}" -metadata publisher="{song_publisher}" -metadata comment="{song_comment}" -codec:a libmp3lame -b:a {Bitrate}k -hide_banner -y "{output}"{Nullifier} && rm "{song_id}_raw.mp3" "{song_id}_raw.jpg"'
-
+        # COMPILING MP3 with Metadata and Cover Image
         print("========= STARTING COMPILATION ============")
         download_data =f"""
        TRACK ID : {song_id}
@@ -206,12 +213,14 @@ def FetchSearch(search_term):
         try:
             os.system(compile_command)
         except:
-            print(" ERROR EXECUTING COMMANDS")
+            print(" ERROR EXECUTING FFMPEG")
         print('========  COMPILATION FINISHED  ========')
     else:
       print("ERROR : UNABLE TO FETCH FROM API")
 
 def ParseAction(argv):
+    global Bitrate
+    global Bitrate_index
     action="help"
     options = argv[1].split(":",1)
     if (options[0] == "s" or options[0] =="search"):
