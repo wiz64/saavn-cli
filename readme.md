@@ -16,7 +16,7 @@ Written in - Python <br>
 Compatible with Linux, Windows, Android(Termux) & MacOS
 
 # Features -
-- Free and Open Source
+- ❤️ Free and Open Source
 - 📙 A large library of tracks
 - 🚀 Search and Download tracks directly from the command Line
 - 🎶 Upto 320kbps MP3 files with Metadata
@@ -60,7 +60,8 @@ Windows users can copy `ffmpeg.exe` to `C:\Windows\System32`
 2) Download Executable from [RELEASES PAGE](https://github.com/wiz64/saavn-cli/releases/)
 Directly run commands relatively to the executables.
 
-RUNNING PYTHON SCRIPT:
+---
+### Using Python Script:
 
  Python<br>
    Download and install Python v3+. Run
