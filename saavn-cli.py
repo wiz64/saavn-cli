@@ -219,6 +219,8 @@ def FetchSearch(search_term):
       print("ERROR : UNABLE TO FETCH FROM API")
 
 def ParseAction(argv):
+    global Bitrate
+    global Bitrate_index
     action="help"
     options = argv[1].split(":",1)
     if (options[0] == "s" or options[0] =="search"):
