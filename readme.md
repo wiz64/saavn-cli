@@ -55,7 +55,7 @@ python saavn-cli.py search english songs
 `ffmpeg -version`<br>
 Termius/Linux : `sudo apt install ffmpeg`<br>
 [Download ffmpeg](https://ffmpeg.org/download.html)<br>
-Windows users can copy `ffmpeg.exe` to `C:\Windows\System32` or any other $PATH Directory
+Windows users can copy `ffmpeg.exe` to `C:\Windows\System32` or any other `$PATH` Directory
 
 2) Download Executable from [RELEASES PAGE](https://github.com/wiz64/saavn-cli/releases/)
 Directly run commands relatively to the executables.
