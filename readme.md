@@ -53,9 +53,10 @@ python saavn-cli.py search english songs
 1) Install FFMPEG
 <br>To check if ffmpeg is properly installed, run<br>
 `ffmpeg -version`<br>
-Termius/Linux : `sudo apt install ffmpeg`<br>
 [Download ffmpeg](https://ffmpeg.org/download.html)<br>
-Windows users can copy `ffmpeg.exe` to `C:\Windows\System32` or any other `$PATH` Directory
+- Termius/Linux : `sudo apt install ffmpeg`<br>
+- MacOS (Homebrew) : `brew install ffmpeg` <br> check [brew.sh](https://brew.sh) <br>
+- Windows users can copy `ffmpeg.exe` to `C:\Windows\System32` or any other `$PATH` Directory
 
 2) Download Executable from [RELEASES PAGE](https://github.com/wiz64/saavn-cli/releases/)
 Directly run commands relatively to the executables.
