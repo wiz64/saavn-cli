@@ -8,7 +8,7 @@ Search, Download and Play your favorite songs right away from the command-line. 
 
 > Developer : [@wiz64](https://github.com/wiz64) <br>
 > Status : `In Development`<br>
-> Version : `v 1.0.0`<br>
+> Version : `v 1.0.1`<br>
 > Last Updated : `June 2022`<br>
 > Based on : [Saavn Unofficial API](https://github.com/sumitkolhe/jiosaavn-api) By [@sumitkolhe](https://github.com/sumitkolhe)
 ---
