@@ -17,8 +17,8 @@ Bitrate = 320 # Default Bitrate
 allowed_Bitrate = [12,48,96,160,320]
 # Bitrate Squence is important
 
-version = "0.0.1" # Client Version
-versionCode = 1
+version = "1.0.1" # Client Version
+versionCode = 101
 Nullifier = " >/dev/null 2>&1 " # Nullifier to hide messy ffmpeg output
 debug="false" # Show additional output or not
 Bitrate_index = 4 #Default Bitrate Index of allowed_Bitrate
