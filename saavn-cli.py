@@ -101,7 +101,7 @@ def DoUpdate(version):
       if ServerVersionCode>versionCode:
         print("\n --- [OK] An Update is available, Download Here : "+Fetched['download'])
         exit()
-      elif ServerVersion<=versionCode:
+      elif ServerVersionCode<=versionCode:
         print("\n\n Tool is currently at latest version. check back later")
     else:
       print(r.status_code)
