@@ -18,6 +18,10 @@ jobs:
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
+        body: |
+          Files
+            - `saavn-cli`  - Linux(amd64)
+            - `saavn-cli.exe` - Windows(amd64)
         draft: false
         prerelease: false
     - name: Output Release URL File
