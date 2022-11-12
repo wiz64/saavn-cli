@@ -8,7 +8,7 @@ import subprocess
 from time import sleep
 # CONFIGURATION
 # API_URL - Saavn Unofficial API (@sumitkolhe)
-API_URL = "https://saavn.me"
+API_URL = "https://jiosaavn-api-privatecvc.vercel.app"
 # Search_EP - Endpoint for searching the API
 Search_EP = "/search/songs?query="
 #
