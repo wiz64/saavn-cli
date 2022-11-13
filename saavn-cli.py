@@ -6,6 +6,8 @@ from sys import exit
 import sys
 import subprocess
 from time import sleep
+import base64
+
 # CONFIGURATION
 # API_URL - Saavn Unofficial API (@sumitkolhe)
 API_URL = "https://jiosaavn-api-privatecvc.vercel.app"
@@ -17,8 +19,8 @@ Bitrate = 320 # Default Bitrate
 allowed_Bitrate = [12,48,96,160,320]
 # Bitrate Squence is important
 
-version = "1.0.1" # Client Version
-versionCode = 101
+version = "1.1.0" # Client Version
+versionCode = 110
 Nullifier = " >/dev/null 2>&1 " # Nullifier to hide messy ffmpeg output
 debug="false" # Show additional output or not
 Bitrate_index = 4 #Default Bitrate Index of allowed_Bitrate
@@ -80,8 +82,7 @@ if debug=="true":
 
 # Calling ffmpeg command to test if it is installed and working
 try:
-    subprocess.run(['ffmpeg','-version'],check = True,
-    stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
+    subprocess.run(['ffmpeg','-version'],check = True,stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
 except:
     print(" [X] ERROR : ffmpeg command not found. Install ffmpeg..")
     print(" [0] "+FFMPEG_ERROR+" [0]")
@@ -174,14 +175,14 @@ def FetchSearch(search_term):
         i = int(song_index)
         item = FetchedItems['results'][i-1]
         song_id = str(item['id'])
-        song_album = html.unescape(str(item['album']['name']))
-        song_name = html.unescape(str(item['name']))
-        song_year = html.unescape(str(item['year']))
-        song_artist = html.unescape(str(item['artist']))
+        song_album = html.unescape(str(item['album']['name'])).replace('"','')
+        song_name = html.unescape(str(item['name'])).replace('"','')
+        song_year = html.unescape(str(item['year'])).replace('"','')
+        song_artist = html.unescape(str(item['artist'])).replace('"','')
         song_img_url = str(item['image'][2]['link'])
         song_copyright = html.unescape(str(item['copyright']))
         song_publisher = "Saavn-cli" #str(item['publisher'])
-        song_comment = "https://github.com/wiz64/saavn-cli"
+        song_comment = "downloaded with https://github.com/wiz64/saavn-cli"
         song_download_url = str(item['downloadUrl'][Bitrate_index]['link'])
       
       
@@ -190,12 +191,38 @@ def FetchSearch(search_term):
             os.makedirs(work_dir)
         # Download Raw data to work_dir and compile later using ffmpeg
         song_data = requests.get(song_download_url)
+        song_id = song_id.encode('ASCII')
+        song_id = base64.b64encode(song_id).decode('ASCII')
+        song_comment += "  and song_id_base64="+song_id
         open(f'{work_dir}{song_id}_raw.mp3', 'wb').write(song_data.content)
         song_data = requests.get(song_img_url)
         open(f'{work_dir}{song_id}_raw.jpg', 'wb').write(song_data.content)
         output = os.getcwd()+f"/{song_name}-{song_year}.mp3"
         print("Compiling Metadata")
-        compile_command = f'cd "{work_dir}" && ls && ffmpeg -i "{song_id}_raw.mp3" -i "{song_id}_raw.jpg" -map 0:0 -map 1:0 -c copy -id3v2_version 3 -metadata title="{song_name}" -metadata album="{song_album}" -metadata artist="{song_artist[:72]}" -metadata date="{song_year}" -metadata album_artist="{song_artist[:72]}" -metadata copyright="{song_copyright}" -metadata publisher="{song_publisher}" -metadata comment="{song_comment}" -codec:a libmp3lame -b:a {Bitrate}k -hide_banner -y "{output}"{Nullifier} && rm "{song_id}_raw.mp3" "{song_id}_raw.jpg"'
+        #compile_command = f'cd "{work_dir}" && ls && ffmpeg -i "{song_id}_raw.mp3" -i "{song_id}_raw.jpg" -map 0:0 -map 1:0 -c copy -id3v2_version 3 -metadata title="{song_name}" -metadata album="{song_album}" -metadata artist="{song_artist[:72]}" -metadata date="{song_year}" -metadata album_artist="{song_artist[:72]}" -metadata copyright="{song_copyright}" -metadata publisher="{song_publisher}" -metadata comment="{song_comment}" -codec:a libmp3lame -b:a {Bitrate}k -hide_banner -y "{output}"{Nullifier} && #rm "{song_id}_raw.mp3" "{song_id}_raw.jpg"'
+        compile_command = [
+          'cd',work_dir,
+          '&&','ffmpeg',
+          '-i',song_id+"_raw.mp3",
+          '-i',song_id+"_raw.jpg",
+          '-map','0:0','-map','1:0',
+          '-c','copy','-id3v2_version','3',
+          '-metadata','title="'+song_name+'"',
+          '-metadata','album="'+song_album+'"',
+          '-metadata','artist="'+song_artist[:72]+'"',
+          '-metadata','date="'+song_year+'"',
+          '-metadata','album_artist="'+song_artist[:72]+'"',
+          '-metadata','copyright="'+song_copyright+'"',
+          '-metadata','publisher="'+song_publisher+'"',
+          '-metadata','comment="'+song_comment+'"',
+          '-codec:a','libmp3lame','-b:a',str(Bitrate)+'k','-hide_banner','-y','"'+output+'"',
+          Nullifier,
+          '&&','rm',song_id+"_raw.mp3"," ",song_id+"_raw.jpg"
+        ]
+        # join all in compile_command
+        compile_command = ' '.join(compile_command)
+        
+        
         # COMPILING MP3 with Metadata and Cover Image
         print("========= STARTING COMPILATION ============")
         download_data =f"""
@@ -211,9 +238,10 @@ def FetchSearch(search_term):
         print(download_data)
         print("Executing FFMPEG... \n Compiling")
         try:
-            os.system(compile_command)
-        except:
-            print(" ERROR EXECUTING FFMPEG")
+          subprocess.run(compile_command,check = True,stdout=subprocess.PIPE,stdin=subprocess.PIPE,stderr=subprocess.STDOUT,shell=True)
+        except subprocess.CalledProcessError as e:
+          print(e)
+          print(" ERROR EXECUTING FFMPEG")
         print('========  COMPILATION FINISHED  ========')
     else:
       print("ERROR : UNABLE TO FETCH FROM API")
@@ -265,6 +293,7 @@ def ParseTerms(action,argv):
     for item in DownloadItems:
       print(item)
     return DownloadItems
+    
 ####### END TERMS PARSING
 ####### DIRECT MODE FUNTCION
 def DirectMode():
