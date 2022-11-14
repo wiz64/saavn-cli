@@ -18,7 +18,8 @@ Compatible with Linux, Windows, Android(Termux) & MacOS
 # Features -
 - ❤️ Free and Open Source
 - 📙 A large library of tracks
-- 🚀 Search and Download tracks directly from the command Line
+- 🚀 Search and Download tracks directly
+- ⚙️ Cross Platform - Linux, Windows, MacOS, Android(termux)
 - 🎶 Upto 320kbps MP3 files with Metadata
 - 🎧 Download Multiple tracks at once
 
@@ -26,9 +27,10 @@ Compatible with Linux, Windows, Android(Termux) & MacOS
 Quickstart
 - Compiled Executable
 
-Download the executable binary file, and run it directly or from the terminal 
+Download the executable binary file, and run it directly or from the terminal (Windows and Linux)
 
 ```
+chmod +x saavn-cli
 ./saavn-cli search english songs
 ```
 This will query the API for "english songs" and then display the results as a list. Enter comma-seperated numbers of tracks to download (eg. 4,6,12,15)
