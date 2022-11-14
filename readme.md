@@ -61,13 +61,13 @@ python saavn-cli.py search english songs
 - Windows users can copy `ffmpeg.exe` to `C:\Windows\System32` or any other `$PATH` Directory
 
 2) Download Executable from [RELEASES PAGE](https://github.com/wiz64/saavn-cli/releases/)
-Directly run commands relatively to the executables.
+Directly run commands relatively to the executables. (Windows and Linux)
 
 ---
 ### Using Python Script:
 
  Python<br>
-   Download and install Python v3+. Run
+   Clone Repository, Download and install Python v3+. Run
 
    `pip install -r requirements.txt`
 
