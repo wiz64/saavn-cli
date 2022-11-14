@@ -49,13 +49,13 @@ jobs:
                 sudo apt install pip -y &&
                 python3.9 -m pip install -r requirements.txt &&
                 python3.9 -m pip install pyinstaller &&
-                python3.9 -m PyInstaller --onefile saavn-cli.py -n saavn-cli &&
+                python3.9 -m PyInstaller --icon=icon.ico --onefile saavn-cli.py -n saavn-cli &&
                 chmod 777 dist/saavn-cli
             OUT_FILE_NAME: saavn-cli
             ASSET_MIME: application/x-elf
           - os: windows-latest
             TARGET: windows
-            CMD_BUILD: pip install pyinstaller && pip install -r requirements.txt && pyinstaller --onefile -n saavn-cli saavn-cli.py
+            CMD_BUILD: pip install pyinstaller && pip install -r requirements.txt && pyinstaller --icon=icon.ico --onefile -n saavn-cli saavn-cli.py
             OUT_FILE_NAME: saavn-cli.exe
             ASSET_MIME: application/vnd.microsoft.portable-executable
     steps:

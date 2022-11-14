@@ -1,6 +1,7 @@
 ## saavn-cli - Command-Line Music Downloader
 
-Search, Download and Play your favorite songs right away from the command-line. High-Quality MP3 Files upto 320kbps bitrate with Metadata.
+Search, Download and Play your favorite songs right away from the command-line. High-Quality MP3 Files upto 320kbps bitrate with Metadata. <br>
+<img src="icon.ico" width="100px" height="100px">
 # Details
 
 ## [Download](https://github.com/wiz64/saavn-cli/releases)
