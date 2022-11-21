@@ -19,8 +19,8 @@ Bitrate = 320 # Default Bitrate
 allowed_Bitrate = [12,48,96,160,320]
 # Bitrate Squence is important
 
-version = "1.1.0" # Client Version
-versionCode = 110
+version = "1.1.3" # Client Version
+versionCode = 113
 Nullifier = " >/dev/null 2>&1 " # Nullifier to hide messy ffmpeg output
 debug="false" # Show additional output or not
 Bitrate_index = 4 #Default Bitrate Index of allowed_Bitrate
@@ -86,6 +86,7 @@ try:
 except:
     print(" [X] ERROR : ffmpeg command not found. Install ffmpeg..")
     print(" [0] "+FFMPEG_ERROR+" [0]")
+    exit()
 
 def DoUpdate(version):
     #URL of Update service
@@ -159,7 +160,7 @@ def FetchSearch(search_term):
             
       if (song_indexes=="" or song_indexes == 0 or song_indexes=="0"):
         print("User Cancelled Download. Exiting")
-        exit(0)
+        return 0
       song_indexes = song_indexes.split(",")
       print("Selected Download(s):")
       for song_index in song_indexes:
