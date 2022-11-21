@@ -104,7 +104,30 @@ jobs:
             root: .
             paths:
                 - dist
-
+  build-darwin-amd64:
+    macos:
+      xcode: 13.4.1
+    environment:
+      HOMEBREW_NO_AUTO_UPDATE: 1
+    steps:
+      # Commands will execute in macOS container
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: .
+      - run: |
+          xcodebuild -version
+          python3 -m pip install -r requirements.txt
+          python3 -m pip install pyinstaller
+          python3 -m PyInstaller --icon=icon.ico --onefile saavn-cli.py -n saavn-cli 
+          ls -lh dist
+          cd dist
+          zip saavn-cli-darwin-amd64.zip saavn-cli
+          rm saavn-cli
+        #install deps and compile
+      - persist_to_workspace:
+            root: .
+            paths:
+                - dist
   deploy:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -158,6 +181,17 @@ workflows:
           # only act on version tags
             tags:
               only: /^v[0-9]+(\.[0-9]+)*$/
+        
+      - build-darwin-amd64:
+          requires:
+            - setup
+          filters:
+          # ignore any commit on any branch by default
+            branches:
+              ignore: /.*/
+          # only act on version tags
+            tags:
+              only: /^v[0-9]+(\.[0-9]+)*$/
           
       - build-win-amd64:
           requires: 
@@ -187,6 +221,8 @@ workflows:
             - build-linux-arm64
             - build-linux-amd64
             - build-win-amd64
+            - build-darwin-amd64
+            
           filters:
           # ignore any commit on any branch by default
             branches:
