@@ -11,7 +11,7 @@ Search, Download and Play your favorite songs right away from the command-line. 
 > Status : `In Development`<br>
 > Version : `v 1.1.3`<br>
 
-> Last Updated : `June 2022`<br>
+> Last Updated : `November 2022`<br>
 > Based on : [Saavn Unofficial API](https://github.com/sumitkolhe/jiosaavn-api) By [@sumitkolhe](https://github.com/sumitkolhe)
 ---
 Written in - Python <br>
