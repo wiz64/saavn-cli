@@ -10,9 +10,8 @@ Search, Download and Play your favorite songs right away from the command-line. 
 > Developer : [@wiz64](https://github.com/wiz64) <br>
 > Status : `In Development`<br>
 > Version : `v 1.1.3`<br>
-
 > Last Updated : `November 2022`<br>
-> Based on : [Saavn Unofficial API](https://github.com/sumitkolhe/jiosaavn-api) By [@sumitkolhe](https://github.com/sumitkolhe)
+
 ---
 Written in - Python <br>
 Compatible with Linux, Windows, Android(Termux) & MacOS
@@ -26,21 +25,24 @@ Compatible with Linux, Windows, Android(Termux) & MacOS
 - 🎧 Download Multiple tracks at once
 
 # Usage
-Quickstart
-- Compiled Executable
-
-Download the executable binary file, and run it directly or from the terminal (Windows and Linux)
-
+Quickstart / Compiled
+- [Install ffmpeg](#install-ffmpeg)
+- Download, Extract zip and run
 ```
 chmod +x saavn-cli
 ./saavn-cli search english songs
 ```
-This will query the API for "english songs" and then display the results as a list. Enter comma-seperated numbers of tracks to download (eg. 4,6,12,15)
+Enter comma-seperated numbers for the tracks you want to download - `1,4,12,15`
+..There you go !
 
-- Python Script (Lighter)
+<img src="https://user-images.githubusercontent.com/67432394/203235138-02f43690-1eb6-4660-9e7e-d3a12904e3c2.png" width="275px">
+
+---
+- Python Script 
 
 Universal :
 ```
+pip install -r requirements.txt
 python saavn-cli.py search english songs
 ```
 
@@ -48,13 +50,13 @@ python saavn-cli.py search english songs
 
 >When a user runs the script to search or download songs,<br> The script requests download links, album art, album details, etc from the unofficial API. It downloads the raw files and then compiles them using ffmpeg.
 
-# Installation
 ### Requirements
 
 - ffmpeg
 - Python (v3)
 
-1) Install FFMPEG
+
+#### Install FFMPEG
 <br>To check if ffmpeg is properly installed, run<br>
 `ffmpeg -version`<br>
 [Download ffmpeg](https://ffmpeg.org/download.html)<br>
@@ -62,27 +64,14 @@ python saavn-cli.py search english songs
 - MacOS (Homebrew) : `brew install ffmpeg` <br> check [brew.sh](https://brew.sh) <br>
 - Windows users can copy `ffmpeg.exe` to `C:\Windows\System32` or any other `$PATH` Directory
 
-2) Download Executable from [RELEASES PAGE](https://github.com/wiz64/saavn-cli/releases/)
-Directly run commands relatively to the executables. (Windows and Linux)
 
 ---
-### Using Python Script:
-
- Python<br>
-   Clone Repository, Download and install Python v3+. Run
-
-   `pip install -r requirements.txt`
-
-execute script :
-
-`python saavn-cli.py search:160 english songs`
 
 ### Compiling Binary :
 With `pyinstaller`
 
 `pip install -U pyinstaller`
-
-`pyinstaller --onefile saavn-cli.py`
+`python3 -m PyInstaller --icon=icon.ico --onefile saavn-cli.py -n saavn-cli`
 
 The Executable file will be saved to `dist` folder
 <hr>
@@ -143,7 +132,6 @@ saavn-cli update
 
 ### Todo -
  - adding link-download support
- - fix some bugs
  - album, artist search
   
 # Footnotes 
