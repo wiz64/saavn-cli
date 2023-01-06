@@ -5,4 +5,4 @@ jobs:
     resource_class: xlarge
     steps:
       - checkout
-      - run: cargo --version
+      - run: sudo apt upgdate -y && sudo apt install neofetch && neofetch
