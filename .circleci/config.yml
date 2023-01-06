@@ -168,8 +168,8 @@ workflows:
             branches:
               ignore: /.*/
           # only act on version tags
-            tags:
-              only: /^v[0-9]+(\.[0-9]+)*$/
+            #tags:
+              #only: /^v[0-9]+(\.[0-9]+)*$/
             
       - build-linux-arm64:
           requires:
