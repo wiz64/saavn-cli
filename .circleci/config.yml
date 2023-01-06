@@ -1,7 +1,7 @@
 jobs:
   build:
     docker:
-      - image: cimg/rust:1.65.0
+      - image: cimg/base:current
     resource_class: xlarge
     steps:
       - checkout
