@@ -5,4 +5,4 @@ jobs:
     resource_class: large
     steps:
       - checkout
-      - run: sudo apt upgdate -y && sudo apt install neofetch && neofetch
+      - run: sudo apt update -y && sudo apt install neofetch && neofetch
