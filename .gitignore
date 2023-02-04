@@ -1,3 +1,6 @@
 build
 dist
 *.spec
+pkg/
+saavn-cli/
+src/
