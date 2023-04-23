@@ -19,7 +19,7 @@ Bitrate = 320 # Default Bitrate
 allowed_Bitrate = [12,48,96,160,320]
 # Bitrate Squence is important
 
-version = "1.1.3" # Client Version
+version = "1.2.0" # Client Version
 versionCode = 113
 Nullifier = " >/dev/null 2>&1 " # Nullifier to hide messy ffmpeg output
 debug="false" # Show additional output or not
@@ -120,19 +120,19 @@ def FetchSearch(search_term):
       print("OK 200")
       FetchedItems = r.json()
       i=0 #number counter
-      for item in FetchedItems["results"][:20]:
+      for item in FetchedItems["data"]["results"][:20]:
         i=i+1
         song_id = str(item['id'])
         song_album = str(item['album']['name'])[:32]
         song_name = str(item['name'])[:32]
         if song_name == song_album:song_album=" "
         else: song_album = " @ "+song_album
-        song_artist = str(item['artist'])[:32]
+        song_artist = str(item['primaryArtists'])[:32]
         print(f"({i}) ID: {song_id} | {song_name}{song_album} by {song_artist}")
 
       is_next_page=0
       NextPage_text =""
-      if(FetchedItems["results"][20:]):
+      if(FetchedItems["data"]["results"][20:]):
         is_next_page = 1
         NextPage_text = " `n` for next page |"
       print(f" {NextPage_text} Enter Comma Sperated Numbers eg-(6,11,23) To Download | 0 or Enter to Cancel")
@@ -151,7 +151,7 @@ def FetchSearch(search_term):
               song_name = html.unescape(str(item['name'])[:32])
               if song_name == song_album:song_album=" "
               else: song_album = " @ "+song_album
-              song_artist = html.unescape(str(item['artist'])[:32])
+              song_artist = html.unescape(str(item['primaryArtists'])[:32])
               print(f"({i}) ID: {song_id} | {song_name}{song_album} by {song_artist}")
             print(f"Enter Comma Sperated Numbers eg-(6,11,23) To Download | 0 or Enter to Cancel")
             song_indexes = input("Track No.s - ")
@@ -165,7 +165,7 @@ def FetchSearch(search_term):
       print("Selected Download(s):")
       for song_index in song_indexes:
         i = int(song_index)
-        item = FetchedItems['results'][i-1]
+        item = FetchedItems['data']['results'][i-1]
         song_id = str(item['id'])
         song_album = str(item['album']['name'])
         song_name = str(item['name'])
@@ -174,12 +174,12 @@ def FetchSearch(search_term):
       sleep(3)
       for song_index in song_indexes:
         i = int(song_index)
-        item = FetchedItems['results'][i-1]
+        item = FetchedItems['data']['results'][i-1]
         song_id = str(item['id'])
         song_album = html.unescape(str(item['album']['name'])).replace('"','')
         song_name = html.unescape(str(item['name'])).replace('"','')
         song_year = html.unescape(str(item['year'])).replace('"','')
-        song_artist = html.unescape(str(item['artist'])).replace('"','')
+        song_artist = html.unescape(str(item['primaryArtists'])).replace('"','')
         song_img_url = str(item['image'][2]['link'])
         song_copyright = html.unescape(str(item['copyright']))
         song_publisher = "Saavn-cli" #str(item['publisher'])
