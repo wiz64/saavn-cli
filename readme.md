@@ -142,7 +142,7 @@ Anyone is free to contribute to this project, fixing bugs, optimising code, impr
 # License
 Copyright &copy; 2022 wiz64
 
-The source code of this tool has been licensed under `MIT License` Read the LICENSE File for more info.
+The source code of this tool has been licensed under `MIT License`, Read the LICENSE File for more info.
 
 # Copyright Disclaimer
 I am not responsible for anything related to Third-Party copyright holders, This script comes with absolutely no warranties. Kindly use at your own risk. <br>We do not host or serve the Music files on our servers or accounts.<br> 
