@@ -10,7 +10,7 @@ Search, Download and Play your favorite songs right away from the command-line. 
 > Developer : [@wiz64](https://github.com/wiz64) <br>
 > Status : `In Development`<br>
 > Version : `v 1.2.0`<br>
-> Last Updated : `November 2022`<br>
+> Last Updated : `April 2023`<br>
 
 ---
 Written in - Python <br>
